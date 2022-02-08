@@ -9,7 +9,7 @@ public class OpenWeatherWindApplication {
 
 	public static void main(String[] cityName) {
 		SpringApplication.run(OpenWeatherWindApplication.class, cityName);
-
+		System.out.println("ciao");
 	}
 
 }
