@@ -7,7 +7,6 @@ import com.Manganelli_Naccarello.project.service.*;
 
 public class Filters {
 	service service = new service();
-	FunzioniSpecifiche funz = new FunzioniSpecifiche();
 	
 	/*Questa funzione converte tutte le date utili a DATE e confronta la data passata dall'utente con quelle segnate sulle 
 	 * previsioni. quando raggiunge o supera la data di inizio passata dall'utente allora inizia a operare l'analisi delle
@@ -17,13 +16,13 @@ public class Filters {
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
 		City city = new City();
 		city = service.leggiFile(path, cityName);
-		Date dataInizio = funz.convertiDataOra(dataOraInizio);
-		Date dataFine = funz.convertiDataOra(dataOraFine);
+		Date dataInizio = service.convertiDataOra(dataOraInizio);
+		Date dataFine = service.convertiDataOra(dataOraFine);
 		int n = 0;
 		
 		for (WindData dato: city.getPrevisioni()) {
 			Date dataPrevisione = null;
-			dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+			dataPrevisione = service.convertiDataOra(city.getDataN(n));
 			int fine = dataPrevisione.compareTo(dataFine);
 			int confronto = dataInizio.compareTo(dataPrevisione);
 			n++;
@@ -46,7 +45,7 @@ public class Filters {
 						contaGust++;
 					}
 					n++;
-					dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+					dataPrevisione = service.convertiDataOra(city.getDataN(n));
 					fine = dataPrevisione.compareTo(dataFine);
 				}
 				mediaSpeed= Math.round(mediaSpeed/contaSpeed*100.0)/100.0;
@@ -72,16 +71,16 @@ public class Filters {
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
 		City city = new City();
 		city = service.leggiFile(path, cityName);
-		Date dataInizio = funz.convertiDataOra(dataOraInizio);
+		Date dataInizio = service.convertiDataOra(dataOraInizio);
 		System.out.println(dataInizio);
-		Date dataFine = funz.convertiDataOra(dataOraFine);
+		Date dataFine = service.convertiDataOra(dataOraFine);
 		System.out.println(dataFine);
 		int n = 0;
 		
 		for (WindData dato: city.getPrevisioni()) {
 			System.out.println(n);
 			Date dataPrevisione = null;
-			dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+			dataPrevisione = service.convertiDataOra(city.getDataN(n));
 			System.out.println(dataPrevisione);
 			int fine = dataPrevisione.compareTo(dataFine);
 			System.out.println(fine);
@@ -125,7 +124,7 @@ public class Filters {
 					System.out.println(city.getGustN(n));
 					contaGust++;
 					n++;
-					dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+					dataPrevisione = service.convertiDataOra(city.getDataN(n));
 					fine = dataPrevisione.compareTo(dataFine);
 				}
 				minSpeed = Math.round(minSpeed*100.0)/100.0;
@@ -154,13 +153,13 @@ public class Filters {
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
 		City city = new City();
 		city = service.leggiFile(path, cityName);
-		Date dataInizio = funz.convertiDataOra(dataOraInizio);
-		Date dataFine = funz.convertiDataOra(dataOraFine);
+		Date dataInizio = service.convertiDataOra(dataOraInizio);
+		Date dataFine = service.convertiDataOra(dataOraFine);
 		
 		for (WindData dato: city.getPrevisioni()) {
 			int n = 0;
 			Date dataPrevisione = null;
-			dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+			dataPrevisione = service.convertiDataOra(city.getDataN(n));
 			int fine = dataPrevisione.compareTo(dataFine);
 			int confronto = dataInizio.compareTo(dataPrevisione);
 			
@@ -180,7 +179,7 @@ public class Filters {
 					if (city.getGustN(n)>maxSpeed && city.getGustN(n) != -1) maxGust += city.getGustN(n);
 					contaGust++;
 					n++;
-					dataPrevisione = funz.convertiDataOra(city.getDataN(n));
+					dataPrevisione = service.convertiDataOra(city.getDataN(n));
 					fine = dataPrevisione.compareTo(dataFine);
 				}
 				maxSpeed = Math.round(maxSpeed*100.0)/100.0;

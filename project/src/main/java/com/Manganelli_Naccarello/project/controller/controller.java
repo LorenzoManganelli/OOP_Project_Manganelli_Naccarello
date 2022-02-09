@@ -22,7 +22,6 @@ public class controller
 	
 	@Autowired
 	static service servizioWind = new service();
-	static FunzioniSpecifiche funz = new FunzioniSpecifiche();
 	Filters filtri = new Filters();
 
 	@GetMapping (value="/wind")
@@ -31,7 +30,7 @@ public class controller
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
 		String meteo = servizioWind.getMeteo(cityName);
 		String data = "\"date\":" + servizioWind.getDateTime();
-		String wind = data + "\n" + funz.cercaStat(meteo, "wind", 125) + "\n";
+		String wind = data + "\n" + servizioWind.cercaStat(meteo, "wind", 125) + "\n";
 		System.out.println(service.salva(cityName, wind, path));
 		return wind;
 		}
