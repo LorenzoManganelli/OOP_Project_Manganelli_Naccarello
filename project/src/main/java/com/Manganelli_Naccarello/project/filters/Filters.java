@@ -100,20 +100,37 @@ public class Filters {
 						minSpeed = city.getSpeedN(n);
 						dataMinSpeed = city.getDataN(n);
 						}
+<<<<<<< HEAD
+=======
+					System.out.println("speed letta "+city.getSpeedN(n));
+>>>>>>> branch 'master' of https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git
 					contaSpeed++;
 					
 					if (city.getDegN(n)<minDeg) {
 						minDeg = city.getDegN(n);
 						dataMinDeg = city.getDataN(n);
 					}
+<<<<<<< HEAD
+=======
+					System.out.println("deg letta "+city.getDegN(n));
+>>>>>>> branch 'master' of https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git
 					contaDeg++;
 					
 					if (city.getGustN(n)<minGust) {
 						if(city.getGustN(n)>0) {
+<<<<<<< HEAD
 							minGust += city.getGustN(n);
+=======
+							minGust = city.getGustN(n);
+							System.out.println("min gust "+minGust);
+>>>>>>> branch 'master' of https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git
 							dataMinGust = city.getDataN(n);
 						}
 					}
+<<<<<<< HEAD
+=======
+					System.out.println("gust letto"+city.getGustN(n));
+>>>>>>> branch 'master' of https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git
 					contaGust++;
 					n++;
 					dataPrevisione = service.convertiDataOra(city.getDataN(n));
