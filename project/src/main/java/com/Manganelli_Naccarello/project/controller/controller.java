@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import com.Manganelli_Naccarello.project.model.*;
 import com.Manganelli_Naccarello.project.service.*;
-import com.Manganelli_Naccarello.project.filters.Filters;
+import com.Manganelli_Naccarello.project.filters.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +22,7 @@ public class controller
 	
 	@Autowired
 	static service servizioWind = new service();
-	Filters filtri = new Filters();
+
 
 	@GetMapping (value="/wind")
 		public static String wind(@RequestParam String cityName)
@@ -35,25 +35,26 @@ public class controller
 		return wind;
 		}
 	
-	@GetMapping (value= "/media")
+/*	@GetMapping (value= "/media")
 		public String media (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
 		ritorno = filtri.filtroMedia(cityName, dataOraInizio, dataOraFine);
 		return ritorno;
-	}
+	}*/
 	
 	@GetMapping (value= "/min")
 	public String min (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
-		ritorno = filtri.filtroMin(cityName, dataOraInizio, dataOraFine);
+		FiltroMin min = new FiltroMin(cityName, dataOraInizio, dataOraFine);
+		ritorno = min.filtro();
 		return ritorno;
 	}
 	
-	@GetMapping (value= "/max")
+/*	@GetMapping (value= "/max")
 	public String max (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
 		ritorno = filtri.filtroMax(cityName, dataOraInizio, dataOraFine);
 		return ritorno;
-	}
+	}*/
 
 }

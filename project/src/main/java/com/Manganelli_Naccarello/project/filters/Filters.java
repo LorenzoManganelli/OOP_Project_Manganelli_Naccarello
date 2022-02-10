@@ -104,24 +104,24 @@ public class Filters {
 						minSpeed = city.getSpeedN(n);
 						dataMinSpeed = city.getDataN(n);
 						}
-					System.out.println(city.getSpeedN(n));
+					System.out.println("speed letta "+city.getSpeedN(n));
 					contaSpeed++;
 					
 					if (city.getDegN(n)<minDeg) {
 						minDeg = city.getDegN(n);
 						dataMinDeg = city.getDataN(n);
 					}
-					System.out.println(city.getDegN(n));
+					System.out.println("deg letta "+city.getDegN(n));
 					contaDeg++;
 					
 					if (city.getGustN(n)<minGust) {
 						if(city.getGustN(n)>0) {
-							minGust += city.getGustN(n);
-							System.out.println(minGust);
+							minGust = city.getGustN(n);
+							System.out.println("min gust "+minGust);
 							dataMinGust = city.getDataN(n);
 						}
 					}
-					System.out.println(city.getGustN(n));
+					System.out.println("gust letto"+city.getGustN(n));
 					contaGust++;
 					n++;
 					dataPrevisione = service.convertiDataOra(city.getDataN(n));
