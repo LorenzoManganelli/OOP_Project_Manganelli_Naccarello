@@ -78,14 +78,10 @@ public class Filters {
 		int n = 0;
 		
 		for (WindData dato: city.getPrevisioni()) {
-			System.out.println(n);
 			Date dataPrevisione = null;
 			dataPrevisione = service.convertiDataOra(city.getDataN(n));
-			System.out.println(dataPrevisione);
 			int fine = dataPrevisione.compareTo(dataFine);
-			System.out.println(fine);
 			int confronto = dataPrevisione.compareTo(dataInizio);
-			System.out.println(confronto);
 			
 			if (confronto>=0) {
 				double minSpeed = 9999999;
@@ -94,7 +90,7 @@ public class Filters {
 				double minDeg = 9999999;
 				String dataMinDeg = "";
 				int contaDeg = 0;
-				double minGust = 99999999;
+				double minGust = 9999999;
 				String dataMinGust = "";
 				int contaGust = 0;
 				
@@ -104,24 +100,20 @@ public class Filters {
 						minSpeed = city.getSpeedN(n);
 						dataMinSpeed = city.getDataN(n);
 						}
-					System.out.println(city.getSpeedN(n));
 					contaSpeed++;
 					
 					if (city.getDegN(n)<minDeg) {
 						minDeg = city.getDegN(n);
 						dataMinDeg = city.getDataN(n);
 					}
-					System.out.println(city.getDegN(n));
 					contaDeg++;
 					
 					if (city.getGustN(n)<minGust) {
 						if(city.getGustN(n)>0) {
 							minGust += city.getGustN(n);
-							System.out.println(minGust);
 							dataMinGust = city.getDataN(n);
 						}
 					}
-					System.out.println(city.getGustN(n));
 					contaGust++;
 					n++;
 					dataPrevisione = service.convertiDataOra(city.getDataN(n));

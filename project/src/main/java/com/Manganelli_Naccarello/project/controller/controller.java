@@ -7,6 +7,10 @@ import org.json.JSONObject;
 import com.Manganelli_Naccarello.project.model.*;
 import com.Manganelli_Naccarello.project.service.*;
 import com.Manganelli_Naccarello.project.filters.Filters;
+import com.Manganelli_Naccarello.project.filters.FiltroGenerico;
+import com.Manganelli_Naccarello.project.filters.FiltroMed;
+import com.Manganelli_Naccarello.project.filters.FiltroMin;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,14 +42,18 @@ public class controller
 	@GetMapping (value= "/media")
 		public String media (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
-		ritorno = filtri.filtroMedia(cityName, dataOraInizio, dataOraFine);
+		FiltroMed filtroMed = new FiltroMed(cityName, dataOraInizio, dataOraInizio);
+		//ritorno = filtri.filtroMedia(cityName, dataOraInizio, dataOraFine);
+		ritorno = filtroMed.filtro();
 		return ritorno;
 	}
 	
 	@GetMapping (value= "/min")
 	public String min (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
-		ritorno = filtri.filtroMin(cityName, dataOraInizio, dataOraFine);
+		FiltroMin filtroMin = new FiltroMin(cityName, dataOraInizio, dataOraInizio);
+		//ritorno = filtri.filtroMin(cityName, dataOraInizio, dataOraFine);
+		ritorno = filtroMin.filtro();
 		return ritorno;
 	}
 	
