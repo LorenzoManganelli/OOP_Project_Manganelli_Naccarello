@@ -35,12 +35,13 @@ public class controller
 		return wind;
 		}
 	
-/*	@GetMapping (value= "/media")
+	@GetMapping (value= "/media")
 		public String media (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
-		ritorno = filtri.filtroMedia(cityName, dataOraInizio, dataOraFine);
+		FiltroMedia media = new FiltroMedia(cityName, dataOraInizio, dataOraFine);
+		ritorno = media.filtro();
 		return ritorno;
-	}*/
+	}
 	
 	@GetMapping (value= "/min")
 	public String min (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
@@ -50,11 +51,12 @@ public class controller
 		return ritorno;
 	}
 	
-/*	@GetMapping (value= "/max")
+	@GetMapping (value= "/max")
 	public String max (@RequestParam String cityName, String dataOraInizio, String dataOraFine){
 		String ritorno = "";
-		ritorno = filtri.filtroMax(cityName, dataOraInizio, dataOraFine);
+		FiltroMax max = new FiltroMax(cityName, dataOraInizio, dataOraFine);
+		ritorno = max.filtro();
 		return ritorno;
-	}*/
+	}
 
 }
