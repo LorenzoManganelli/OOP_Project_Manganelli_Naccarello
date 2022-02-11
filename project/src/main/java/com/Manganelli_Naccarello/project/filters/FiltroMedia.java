@@ -2,14 +2,22 @@ package com.Manganelli_Naccarello.project.filters;
 
 import java.util.Date;
 
-import com.Manganelli_Naccarello.project.model.City;
 import com.Manganelli_Naccarello.project.model.WindData;
 
-public class FiltroMed extends FiltroGenerico {
+public class FiltroMedia extends FiltroGenerico {
 
-	public FiltroMed(String cityName, String inizio, String fine) {
+	public FiltroMedia(String cityName, String inizio, String fine) {
 		super(cityName, inizio, fine);
 	}
+	
+	private double mediaSpeed = 0;
+	private int contaSpeed = 0;
+
+	private double mediaDeg = 0;
+	private int contaDeg = 0;
+
+	private double mediaGust = 0;
+	private int contaGust = 0;
 
 	public String filtro() {
 		for (WindData dato : getCity().getPrevisioni()) {
@@ -17,29 +25,20 @@ public class FiltroMed extends FiltroGenerico {
 			dataPrevisione = service.convertiDataOra(getCity().getDataN(getN()));
 			int fine = dataPrevisione.compareTo(getFine());
 			int confronto = dataPrevisione.compareTo(getInizio());
-			setN(getN()+1);
-			if (confronto >= 0) {
-				double mediaSpeed = 0;
-				int contaSpeed = 0;
-				double mediaDeg = 0;
-				int contaDeg = 0;
-				double mediaGust = 0;
-				int contaGust = 0;
 
+			if (confronto >= 0) {
 				while (fine < 0) {
 					mediaSpeed += getCity().getSpeedN(getN());
-					System.out.println(mediaSpeed);
 					contaSpeed++;
+
 					mediaDeg += getCity().getDegN(getN());
-					System.out.println(mediaDeg);
 					contaDeg++;
 
 					if (getCity().getGustN(getN()) != -1) {
 						mediaGust += getCity().getGustN(getN());
-						System.out.println(mediaGust);
 						contaGust++;
 					}
-					setN(getN()+1);
+					setN(getN() + 1);
 					dataPrevisione = service.convertiDataOra(getCity().getDataN(getN()));
 					fine = dataPrevisione.compareTo(getFine());
 				}
@@ -56,10 +55,8 @@ public class FiltroMed extends FiltroGenerico {
 				ritorno += "\"NUMERO DATI ESAMINATI:\" " + contaGust + "\n";
 				return ritorno;
 			}
-			setN(getN()+1);
-			System.out.println("Non trovato");
+			setN(getN() + 1);
 		}
-
 		return "Non siamo riusciti ad analizzare nulla nell'intervallo di tempo che ci hai dato";
 	}
 }
