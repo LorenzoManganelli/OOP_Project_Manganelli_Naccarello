@@ -32,8 +32,6 @@ public class WindData
 		this.windGust = windGust;
 	}
 	
-	
-	
 	public void printPrevisioni () {
 		System.out.println("DATE: "+ dataOra);
 		System.out.println("SPEED: "+ windSpeed);
