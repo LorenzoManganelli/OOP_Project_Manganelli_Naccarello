@@ -60,13 +60,13 @@ public class FiltroMax extends FiltroGenerico {
 				maxGust = Math.round(maxGust * 100.0) / 100.0;
 
 				String ritorno = "";
-				ritorno += "\"MIN Speed\": " + maxSpeed + "\n";
+				ritorno += "\"MAX Speed\": " + maxSpeed + "\n";
 				ritorno += "Ottenuta il giorno: " + dataMaxSpeed + "\n";
 				ritorno += "\"NUMERO DATI ESAMINATI:\" " + contaSpeed + "\n";
-				ritorno += "\"MIN Deg\": " + maxDeg + "\n";
+				ritorno += "\"MAX Deg\": " + maxDeg + "\n";
 				ritorno += "Ottenuta il giorno: " + dataMaxDeg + "\n";
 				ritorno += "\"NUMERO DATI ESAMINATI:\" " + contaDeg + "\n";
-				ritorno += "\"MIN Gust\": " + maxGust + "\n";
+				ritorno += "\"MAX Gust\": " + maxGust + "\n";
 				ritorno += "Ottenuta il giorno: " + dataMaxGust + "\n";
 				ritorno += "\"NUMERO DATI ESAMINATI:\" " + contaGust + "\n";
 				return ritorno;

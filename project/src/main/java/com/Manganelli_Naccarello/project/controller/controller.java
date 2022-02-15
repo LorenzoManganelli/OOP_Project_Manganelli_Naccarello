@@ -39,6 +39,42 @@ public class controller
 		return wind;
 		}
 	
+	
+	@GetMapping (value = "/filter")
+		public String filter (@RequestParam String filterType, String cityName, String dataOraInizio, String dataOraFine)
+							throws EmptyStringException, FileNotFoundException {
+		if (filterType.isEmpty()) throw new EmptyStringException("NON HAI INSERITO UN FILTRO.");
+		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
+		if (dataOraInizio.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI INIZIO DELLA RICERCA.");
+		if (dataOraFine.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI FINE DELLA RICERCA.");
+		String ritorno = "";
+		switch(filterType) {
+		
+		case "min":
+		case "MIN":
+		case "Min":
+			{FiltroMin min = new FiltroMin(cityName, dataOraInizio, dataOraFine);
+			ritorno = min.filtro(); break;}
+			
+		case "med":
+		case "MED":
+		case "Med":
+			{FiltroMedia media = new FiltroMedia(cityName, dataOraInizio, dataOraFine);
+			ritorno = media.filtro(); break;}
+			
+		case "max": 
+		case "MAX":
+		case "Max":
+			{FiltroMax max = new FiltroMax(cityName, dataOraInizio, dataOraFine);
+			ritorno = max.filtro(); break;}
+			
+		default: ritorno = "NON HAI INSERITO UN FILTRO VALIDO";
+		}
+		return ritorno;
+		
+	}
+	
+	
 	@GetMapping (value = "/media")
 		public String media (@RequestParam String cityName, String dataOraInizio, String dataOraFine)
 							throws EmptyStringException, FileNotFoundException {
