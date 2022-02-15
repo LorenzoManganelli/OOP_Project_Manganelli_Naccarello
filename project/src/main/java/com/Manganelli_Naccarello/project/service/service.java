@@ -2,6 +2,7 @@ package com.Manganelli_Naccarello.project.service;
 
 import com.Manganelli_Naccarello.project.model.City;
 import com.Manganelli_Naccarello.project.model.WindData;
+import com.Manganelli_Naccarello.project.exceptions.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,11 +34,13 @@ import java.text.SimpleDateFormat;
 @Service
 public class service
 {
-
 	private static String key = "6f1d40fe1384d12abc18e99d597fbd5d";	
+	
+	
+	
 	// Funzione per aggiungere una data al JSONObject con i dati meteo
-	public String getDateTime() 
-	{
+	public String getDateTime() {
+		
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
@@ -46,7 +49,7 @@ public class service
 	
 	
 	//Metodo che salva su file. prende in ingresso il nome della città, le previsioni appena prese e il path. returna il path.
-	public static String salva (String cityName ,String previsione, String path) {
+	public String salva (String cityName ,String previsione, String path) {
 
 		File file = new File(path);
 		
@@ -56,7 +59,7 @@ public class service
             }
 		}
 		catch ( Exception e) {
-			System.out.println (" ERRORE DURANTE  LA CREAZIONE DEL FILE");
+			System.out.println (" ERRORE DURANTE LA CREAZIONE DEL FILE");
 			System.out.println (e);
 		}
 		
@@ -78,7 +81,7 @@ public class service
 				writer.close ();
 			}
 		catch ( IOException e) { 
-			System.out.println (" ERRORE di I/O");
+			System.out.println (" ERRORE DI I/O");
 			System.out.println (e);
 		}
 		return path;
@@ -102,19 +105,19 @@ public class service
         } catch (IOException e) {
         	System.out.println("ERRORE DURANTE LA RICHIESTA METEO");
         } catch (Exception e) {
-        	System.out.println("ERRORE generico della classe");
+        	System.out.println("ERRORE GENERICO DEL METODO");
         }
        meteo_citta += "\n" + "Data: " + getDateTime();
        return meteo_citta;
 
     }
     
-    public City leggiFile (String path, String cityName){
+    public City leggiFile (String path, String cityName) throws FileNotFoundException{
     	City city = new City();
+    	File file = new File(path);
+    	if (!file.exists()) throw new FileNotFoundException("NON ESISTE ALCUN FILE RELATIVO A QUESTA CITTA'");
+    	
     	try {
-    		
-    		File file = new File(path);
-
             BufferedReader reader = new BufferedReader(new FileReader(file));
             BufferedWriter writer = new BufferedWriter(new StringWriter ());
 
@@ -149,16 +152,17 @@ public class service
     	
     	catch (IOException e) {
     		System.out.print("ERRORE DI INPUT/OUTPUT");
-    		e.printStackTrace();
     		}
     	return city;
     	}
+    
+    
 	/* Questa funzione legge la stringa STRINGA in cerca del parametro STAT che deve trovarsi necessariamente tra parentesi.
 	 * Quando lo trova, inizia a scrivere tutto quello che segue finchè non incontra il CARATTEREFINALE.
 	 * */
 	public String cercaStat (String stringa, String stat, int carattereFinale) {
     	
-    	String findWind = "";
+    	String findStat = "";
     	
     	BufferedReader reader = new BufferedReader (new StringReader (stringa));
 		BufferedWriter writer = new BufferedWriter (new StringWriter ());
@@ -172,38 +176,38 @@ public class service
     			if (next == 34) {
     				
     				while((next = reader.read()) != -1 ) {
-    					findWind += (char) next;
+    					findStat += (char) next;
 
     					 if (next == 34) {
-    						 if ((findWind.compareTo("\"" + stat + "\"") != 0)) {
-    							 findWind = "\""; 
+    						 if ((findStat.compareTo("\"" + stat + "\"") != 0)) {
+    							 findStat = "\""; 
     							 }
     						 break; 
     					 }
     				} 
 
-    				if ((findWind.compareTo("\"" + stat + "\"") == 0)) {
+    				if ((findStat.compareTo("\"" + stat + "\"") == 0)) {
 
 						while((next = reader.read()) != -1 ) {
-	    					findWind += (char) next;
+	    					findStat += (char) next;
 
 	    					if (next == carattereFinale) break;
 	    				}break;		
 					}
     			}
     		}
-    		if (findWind.compareTo("\"") == 0) findWind="\""+stat+"\": "+"-1";
+    		if (findStat.compareTo("\"") == 0) findStat="\""+stat+"\": "+"-1";
     		reader.close();
 	    	writer.close();
     	}
     	catch (IOException e) { 
-			System.out.println (" ERRORE di I/O");
-			System.out.println (e);
+			System.out.println (" ERRORE DI I/O");
+
     	}
     	catch(Exception e){
-    		System.out.println (e);
+    		System.out.println (" ERRORE DEL METODO");
     	}
-    	return findWind;
+    	return findStat;
     }
 	
 	
@@ -240,32 +244,18 @@ public class service
 		} 	
 		catch ( IOException e) { 
 			System.out.println (" ERRORE di I/O");
-			System.out.println (e);
     	}
     	catch(Exception e){
-    		System.out.println (e);
+    		System.out.println (" ERRORE DEL METODO");
     	}
 
 		statEstratta = Double.parseDouble(numEstratto);
 		return statEstratta;
 	}
 	
-	/* questa funzione confronta la data chiesta dall'utente (data2) con quella letta nelal classe city (data1). returna true se le date
-	 * sono uguali*/
-	public boolean confrontaData(String data1, String data2) {
-		String dataLetta = data1.substring(0, data1.length()-9);
-		if (data2.compareTo(dataLetta) == 0) return true;
-		else return false;
-	}
 	
-	/* questa funzione confronta l'ora chiesta dall'utente (ora2) con quella letta nella classe city (ora1). returna true se gli orari
-	 * sono uguali*/
-	public boolean confrontaOra(String ora1, String ora2) {
-		String oraLetta = ora1.substring(11, ora1.length());
-		if (ora2.compareTo(oraLetta) == 0) return true;
-		else return false;
-	} 
-	
+	/*Questo metodo converte la stringa DATAORA in formato Date per poter essere analizzata dai filtri.
+	 * */
 	public Date convertiDataOra (String dataOra) {
 
 		SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -275,7 +265,7 @@ public class service
 				Date date = dateParser.parse(dataOra);
 				ritorno = date;
 				} catch (ParseException e) {
-					e.printStackTrace();
+					System.out.println("HAI INSERITO LA DATA NEL FORMATO SBAGLIATO");
 				}
 			}
 		return ritorno;

@@ -40,4 +40,11 @@ public class WindData
 		System.out.println("");
 	}
 	
+	public String toString() {
+		String ritorno = "Date = "+ this.dataOra+ "\n";
+		ritorno += "Speed = "+ this.windSpeed+ "\n";
+		ritorno += "Deg = "+ this.windDeg+ "\n";
+		ritorno += "Gust = "+ this.windGust+ "\n\n";
+		return ritorno;
+	}
 }

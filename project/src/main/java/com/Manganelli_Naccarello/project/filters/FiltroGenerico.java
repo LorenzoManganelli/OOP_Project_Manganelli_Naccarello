@@ -1,10 +1,10 @@
 package com.Manganelli_Naccarello.project.filters;
 
 import com.Manganelli_Naccarello.project.service.service;
+import com.Manganelli_Naccarello.project.exceptions.*;
+import com.Manganelli_Naccarello.project.model.*;
 
 import java.util.Date;
-
-import com.Manganelli_Naccarello.project.model.*;
 
 public class FiltroGenerico {
 
@@ -18,7 +18,7 @@ public class FiltroGenerico {
     private int contaDeg = 0;
     private int contaGust = 0;
 
-    public FiltroGenerico(String cityName, String inizio, String fine) 
+    public FiltroGenerico(String cityName, String inizio, String fine) throws FileNotFoundException
     {
         path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
         city = service.leggiFile(path, cityName);

@@ -1,8 +1,9 @@
 package com.Manganelli_Naccarello.project.filters;
 
-import java.util.Date;
-
+import com.Manganelli_Naccarello.project.exceptions.*;
 import com.Manganelli_Naccarello.project.model.*;
+
+import java.util.Date;
 
 public class FiltroMax extends FiltroGenerico {
 
@@ -18,7 +19,7 @@ public class FiltroMax extends FiltroGenerico {
 	private String dataMaxGust = "";
 	private int contaGust = 0;
 
-	public FiltroMax(String cityName, String inizio, String fine) {
+	public FiltroMax(String cityName, String inizio, String fine) throws FileNotFoundException {
 		super(cityName, inizio, fine);
 	}
 

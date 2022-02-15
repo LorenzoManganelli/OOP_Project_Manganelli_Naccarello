@@ -1,12 +1,13 @@
 package com.Manganelli_Naccarello.project.filters;
 
-import java.util.Date;
-
 import com.Manganelli_Naccarello.project.model.WindData;
+import com.Manganelli_Naccarello.project.exceptions.*;
+
+import java.util.Date;
 
 public class FiltroMedia extends FiltroGenerico {
 
-	public FiltroMedia(String cityName, String inizio, String fine) {
+	public FiltroMedia(String cityName, String inizio, String fine) throws FileNotFoundException{
 		super(cityName, inizio, fine);
 	}
 	

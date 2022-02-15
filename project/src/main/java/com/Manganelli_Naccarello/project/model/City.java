@@ -28,10 +28,6 @@ public class City
 		return previsioni;
 	}
 	
-	public void printVector () {
-		for (WindData dato: previsioni) dato.printPrevisioni();
-	}
-	
 	public String getDataN(int n) {
 		return previsioni.elementAt(n).getDataOra();
 	}
@@ -47,4 +43,16 @@ public class City
 	public double getGustN(int n) {
 		return previsioni.elementAt(n).getWindGust();
 	}
+	
+	
+	public void printVector () {
+		for (WindData dato: previsioni) dato.printPrevisioni();
+	}
+	
+	public String toString(){
+		String ritorno = "Città = "+this.name+"\n";
+		for (WindData dato: previsioni) ritorno += dato.toString();
+		return ritorno;
+		
+	}	
 }

@@ -1,8 +1,9 @@
 package com.Manganelli_Naccarello.project.filters;
 
-import java.util.Date;
-
 import com.Manganelli_Naccarello.project.model.*;
+import com.Manganelli_Naccarello.project.exceptions.*;
+
+import java.util.Date;
 
 public class FiltroMin extends FiltroGenerico {
 
@@ -18,7 +19,7 @@ public class FiltroMin extends FiltroGenerico {
 	private String dataMinGust = "";
 	private int contaGust = 0;
 
-	public FiltroMin(String cityName, String inizio, String fine) {
+	public FiltroMin(String cityName, String inizio, String fine) throws FileNotFoundException {
 		super(cityName, inizio, fine);
 	}
 
