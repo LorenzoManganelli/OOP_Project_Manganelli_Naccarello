@@ -60,3 +60,8 @@ Le eccezioni del programma sono le seguenti:
 **PrevisioniNotFoundException**:  stampa un messaggio di errore quando la chiamata all'API non restituisce alcun risultato, e viene usata dalla rotta **/wind**.
 
 ## Struttura del progetto
+![neapolis_yoda](https://user-images.githubusercontent.com/95304083/154576412-176fd1af-3bc7-4b90-abbe-988ed0599f35.png)
+Struttura originale del progetto
+
+## Progettisti
+Lorenzo Manganelli e Raffaele Naccarello
