@@ -6,8 +6,14 @@ import com.Manganelli_Naccarello.project.model.*;
 
 import java.util.Date;
 
-public class FiltroGenerico {
+/**	Questa classe contiene le informazioni comuni a tutti i filtri.
+ * 
+ * @author Raffaele
+ * @author Lorenzo
+ * */
 
+public class FiltroGenerico {
+	
     service service = new service();
     private City city = new City();
     private String path = "";
@@ -18,6 +24,12 @@ public class FiltroGenerico {
     private int contaDeg = 0;
     private int contaGust = 0;
 
+    /** Costruttore della classe.
+     * 
+     * @param il nome della città.
+     * @param la stringa contenente data e ora di inizio analisi.
+     * @param la stringa contenente data e ora di fine analisi.
+     * */
     public FiltroGenerico(String cityName, String inizio, String fine) throws FileNotFoundException
     {
         path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";

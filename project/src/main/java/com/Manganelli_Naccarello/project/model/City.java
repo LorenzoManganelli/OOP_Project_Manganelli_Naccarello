@@ -2,7 +2,12 @@ package com.Manganelli_Naccarello.project.model;
 
 import java.util.Vector;
 
-import com.Manganelli_Naccarello.project.model.WindData;
+/** Questa classe rappresenta una città, descritta dal suo nome e dalle previsioni del meteo raccolte nel tempo.
+ * 
+ * @author Raffaele
+ * @author Lorenzo
+ * */
+
 
 public class City
 {
@@ -44,15 +49,17 @@ public class City
 		return previsioni.elementAt(n).getWindGust();
 	}
 	
+	/** Metodo che restituisce come stringa tutti i dati dell'oggetto.
+	 * */
+	public String toString(){
+		String ritorno = "Città = " + this.name + "\n";
+		for (WindData dato: previsioni) ritorno += dato.toString();
+		return ritorno;	
+	}	
 	
+	/** Metodo che stampa il vettore previsioni. Inutilizzato.
+	 * */
 	public void printVector () {
 		for (WindData dato: previsioni) dato.printPrevisioni();
 	}
-	
-	public String toString(){
-		String ritorno = "Città = "+this.name+"\n";
-		for (WindData dato: previsioni) ritorno += dato.toString();
-		return ritorno;
-		
-	}	
 }

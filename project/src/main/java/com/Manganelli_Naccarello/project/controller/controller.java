@@ -1,21 +1,21 @@
 package com.Manganelli_Naccarello.project.controller;
-import java.io.IOException;
-import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import com.Manganelli_Naccarello.project.model.*;
 import com.Manganelli_Naccarello.project.service.*;
 import com.Manganelli_Naccarello.project.exceptions.*;
 import com.Manganelli_Naccarello.project.filters.*;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+/** Questo è il controller che gestisce le possibili chiamate al server
+ * 
+ * @author Raffaele
+ * @author Lorenzo
+ * */
+
 
 @RestController
 public class controller 
@@ -24,7 +24,15 @@ public class controller
 	@Autowired
 	static service servizioWind = new service();
 
-
+	/** Rotta di tipo GET che opera una chiamata all'API e restituisce le attuali condizioni meteo del vento.
+	 * 
+	 * @param il nome della città di cui si vogliono avere le previsioni meteo.
+	 * @return la stringa contenente le informazioni sul vento.
+	 * @throws EmptyStringException se l'utente non inserisce alcun parametro su Postman.
+	 * @throws PrevisioniNotFoundException se la chiamata all'API non restituisce alcun risultato.
+	 * */
+	
+	
 	@GetMapping (value = "/wind")
 		public static String wind(@RequestParam String cityName)
 							throws EmptyStringException, PrevisioniNotFoundException{
@@ -35,10 +43,21 @@ public class controller
 		if (meteo.isEmpty()) throw new PrevisioniNotFoundException("NON ESISTE ALCUNA CITTA' CON QUESTO NOME");
 		String data = "\"date\":" + servizioWind.getDateTime();
 		String wind = data + "\n" + servizioWind.cercaStat(meteo, "wind", 125) + "\n";
-		System.out.println(servizioWind.salva(cityName, wind, path));
+		System.out.println(servizioWind.salva(wind, path));
 		return wind;
 		}
 	
+	/** Questa rotta di tipo GET permette all'utente di filtrare i dati salvati nei file per conoscere valori minimi, massimi o
+	 * medi. 
+	 * 
+	 * @param il tipo di filtro che si vuole operare. Può essere MIN, MAX o MED.
+	 * @param il nome della città su cui operare i filtri.
+	 * @param la stringa contenete la data e ora di inizio filtraggio.
+	 * @param la stringa contenete la data e ora di fine filtraggio.
+	 * @return una stringa contenente i parametri filtrati.
+	 * @throws EmptyStringException se l'utente non inserisce alcun parametro su Postman.
+	 * @throws FileNotFoundException se il file da leggere non esiste o non viene trovato.
+	 * */
 	
 	@GetMapping (value = "/filter")
 		public String filter (@RequestParam String filterType, String cityName, String dataOraInizio, String dataOraFine)
@@ -113,6 +132,14 @@ public class controller
 		ritorno = max.filtro();
 		return ritorno;
 	}
+	
+	/**Rotta di tipo GET che stampa il contenuto del file associato alla città scelta dall'utente.
+	 * 
+	 * @param il nome della città associata al file da leggere.
+	 * @return una stringa contenente l'intero contenuto del file.
+	 * @throws EmptyStringException se l'utente non inserisce alcun parametro su Postman.
+	 * @throws FileNotFoundException se il file da leggere non esiste o non viene trovato.
+	 * */
 	
 	@GetMapping (value = "/print")	
 	public String stampaFile (@RequestParam String cityName) 

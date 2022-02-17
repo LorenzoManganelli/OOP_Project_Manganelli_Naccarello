@@ -1,5 +1,12 @@
 package com.Manganelli_Naccarello.project.model;
 
+/** Questa classe rappresenta le previsioni del vento prese in un determinato momento della giornata.
+ * 
+ * @author Raffaele
+ * @author Lorenzo
+ * */
+
+
 public class WindData 
 {
 	private String dataOra;
