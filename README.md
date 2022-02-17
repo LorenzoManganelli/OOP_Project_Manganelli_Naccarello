@@ -9,6 +9,7 @@ Questo programma, creato utilizzando java, permette di estrarre i dati del vento
 5. Documentazione
 6. Eccezioni
 7. Struttura del progetto
+8. Progettisti
 ## Introduzione
 Il programma è capace di estrarre dall'API i dati sopra segnati e li salva su file, e stampa sulla console il path per poterlo trovare. A sua volta questo file può essere filtrato per max, min e media della speed, gust e deg (già pronte ci sono 4 città: *Ancona, Tokyo, Sydney e Helsinki*).
 
@@ -56,4 +57,6 @@ Le eccezioni del programma sono le seguenti:
 
 **FileNotFoundException**: stampa un messaggio di errore in caso il file non viene trovato dal programma (per esempio in caso la città sia stata scritta sbagliata), e viene usata nelle rotte **/filter** e **/print**
 
-**PrevisioniNotFoundException**
+**PrevisioniNotFoundException**:  stampa un messaggio di errore quando la chiamata all'API non restituisce alcun risultato, e viene usata dalla rotta **/wind**.
+
+## Struttura del progetto
