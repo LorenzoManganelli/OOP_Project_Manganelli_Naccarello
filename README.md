@@ -33,3 +33,6 @@ Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e 
 ## /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*"
 Inserire il tipo di filtro al posto di "*filtro*" (max, Max, MAX, min, Min, MIN, med, Med, MED), il nome dellà città al posto di "*città*" e la data di inizio e di fine che vuole essere analizzata (formato dd-MM-yyyy HH:mm:ss) al posto di "*inizio*" e "*fine*", restituendo alla fine un testo che mostra i dati richiesti con relative date e numero di dati analizzati.
 ![Screenshot (207)](https://user-images.githubusercontent.com/95304083/154553283-47363ff5-c4bd-4079-b6a4-918e7f0f5be0.png)
+NOTA: per usare i filtri si deve avere un file contenente i dati in maniera corretta
+
+## /print?cityName="*città*"
