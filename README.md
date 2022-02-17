@@ -27,12 +27,33 @@ Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere al
 Per effetuare le richieste basta avviare il programma come SpringBoot e utilizzare Postman nel modo seguente 
 
 ## /wind?cityName="*città*"
-Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e il Postman restituirà un JSONObject che ha i dati di speed, deg e gust e la data e ora corrente (in caso di errore sulla console verrà stampato un messaggio di errore)
+Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e Postman restituirà un JSONObject che ha i dati di speed, deg e gust e la data e ora corrente (in caso di errore sulla console verrà stampato un messaggio di errore)
+ 
 ![Screenshot (206)](https://user-images.githubusercontent.com/95304083/154550951-880b884b-c68d-41ae-b97d-d4a7aa9561e9.png)
 
 ## /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*"
 Inserire il tipo di filtro al posto di "*filtro*" (max, Max, MAX, min, Min, MIN, med, Med, MED), il nome dellà città al posto di "*città*" e la data di inizio e di fine che vuole essere analizzata (formato dd-MM-yyyy HH:mm:ss) al posto di "*inizio*" e "*fine*", restituendo alla fine un testo che mostra i dati richiesti con relative date e numero di dati analizzati.
+ 
+**NOTA**: per usare i filtri si deve avere un file contenente i dati in maniera corretta
 ![Screenshot (207)](https://user-images.githubusercontent.com/95304083/154553283-47363ff5-c4bd-4079-b6a4-918e7f0f5be0.png)
-NOTA: per usare i filtri si deve avere un file contenente i dati in maniera corretta
+
 
 ## /print?cityName="*città*"
+Semplicemente inserire una città con un file esistente al posto di "*città*", e Postman restituirà un file di testo contenente i dati all'interno del file.
+ 
+![Screenshot (208)](https://user-images.githubusercontent.com/95304083/154558051-7b7316b3-ac23-4c36-a562-80f48fb0aa06.png)
+
+## Test
+TBA
+
+## Documentazione
+Il codice è documentato in Javadoc.
+
+## Eccezioni
+Le eccezioni del programma sono le seguenti:
+ 
+**EmptyStringException**: stampa un messaggio di errore in caso la stringa viene lasciata vuota, e viene usata nelle rotte **/wind**. **/filter** e **/print**
+
+**FileNotFoundException**: stampa un messaggio di errore in caso il file non viene trovato dal programma (per esempio in caso la città sia stata scritta sbagliata), e viene usata nelle rotte **/filter** e **/print**
+
+**PrevisioniNotFoundException**
