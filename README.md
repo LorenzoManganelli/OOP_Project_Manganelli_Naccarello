@@ -1,21 +1,26 @@
 # OOP_Project_Manganelli_Naccarello
 ## Controllo del vento
 Questo programma, creato utilizzando java, permette di estrarre i dati del vento, divisi in velocità "speed", raffica "gust" e angolo "degree", dal'API OpenWeather. Inoltre salva questi dati su file, che a loro volta possono essere filtrati per i valori massimi, minimi e medi di tutte e tre le caratteristiche, scegliendo come range sia orari che date.
+
 ## Contenuti
-1. Introduzione
-2. Installazione
-3. Rotte
-4. Test (TBA)
-5. Documentazione
-6. Eccezioni
-7. Struttura del progetto
-8. Progettisti
+1. [Introduzione](#introduzione)
+2. [Installazione](#installazione)
+3. [Rotte](#rotte)
+4. [Test](#test)
+5. [Documentazione](#documentazione)
+6. [Eccezioni](#eccezioni)
+7. [Struttura del progetto](#struttura)
+8. [Progettisti](#progettisti)
+
+<a name="introduzione"></a>
 ## Introduzione
 Il programma è capace di estrarre dall'API i dati sopra segnati e li salva su file, e stampa sulla console il path per poterlo trovare. A sua volta questo file può essere filtrato per max, min e media della speed, gust e deg (già pronte ci sono 4 città: *Ancona, Tokyo, Sydney e Helsinki*).
 
+<a name="installazione"></a>
 ## Installazione
 Il programma può essere scaricato inserendo ```git clone https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git```
 
+<a name="rotte"></a>
 ## Rotte
 Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere all'indirizzo: ```localhost:8080```
 
@@ -44,6 +49,7 @@ Semplicemente inserire una città con un file esistente al posto di "*città*", 
  
 ![Screenshot (208)](https://user-images.githubusercontent.com/95304083/154558051-7b7316b3-ac23-4c36-a562-80f48fb0aa06.png)
 
+<a name="test"></a>
 ## Test
 
 <details><summary>Codice separato usato per fare i test</summary>
@@ -229,9 +235,13 @@ public class test {
 </p>
 </details>
 
-## Documentazione
-Il codice è documentato in Javadoc.
+Ci interessava testare i metodi cercaStat, estraiStat e i vari confronti, quindi per farlo abbiamo creato un progetto di test separato e abbiamo fatto li tutti i nostri "esperimenti".
 
+<a name="documentazione"></a>
+## Documentazione
+Il codice è documentato in [Javadoc](https://github.com).
+
+<a name="eccezioni"></a>
 ## Eccezioni
 Le eccezioni del programma sono le seguenti:
  
@@ -241,9 +251,11 @@ Le eccezioni del programma sono le seguenti:
 
 **PrevisioniNotFoundException**:  stampa un messaggio di errore quando la chiamata all'API non restituisce alcun risultato, e viene usata dalla rotta **/wind**.
 
+<a name="struttura"></a>
 ## Struttura del progetto
 
 Struttura originale del progetto
 
-## Progettisti
+<a name="progettisti"></a>
+### Progettisti
 Lorenzo Manganelli e Raffaele Naccarello
