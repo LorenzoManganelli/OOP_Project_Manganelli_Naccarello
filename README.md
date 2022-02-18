@@ -14,10 +14,10 @@ Questo programma, creato utilizzando java, permette di estrarre i dati del vento
 Il programma è capace di estrarre dall'API i dati sopra segnati e li salva su file, e stampa sulla console il path per poterlo trovare. A sua volta questo file può essere filtrato per max, min e media della speed, gust e deg (già pronte ci sono 4 città: *Ancona, Tokyo, Sydney e Helsinki*).
 
 ## Installazione
-Il programma può essere scaricato inserendo `git clone https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git`
+Il programma può essere scaricato inserendo ```git clone https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git```
 
 ## Rotte
-Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere all'indirizzo: `localhost:8080`
+Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere all'indirizzo: ```localhost:8080```
 
 | Tipo  | Rotta | Descrizione |
 | ------------- | ------------- | ------------- |
@@ -45,7 +45,189 @@ Semplicemente inserire una città con un file esistente al posto di "*città*", 
 ![Screenshot (208)](https://user-images.githubusercontent.com/95304083/154558051-7b7316b3-ac23-4c36-a562-80f48fb0aa06.png)
 
 ## Test
-TBA
+
+<details><summary>Codice separato usato per fare i test</summary>
+<p>
+package test;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class test {
+	
+
+
+	public static void main(String[] args) {
+		String stringa ="\"humidity\":45},\"visibility\":10000,\"wind\":{\"speed\":4.02,\"deg\":267},\"clouds\":22232eeeeee:eede";
+		String stringa2 = "21-01-2022";
+		String stringa3 = "\"date\": 21-01-2022 00:00:00";
+		String stringa4 = "00:00:11";
+		String stringa5 = "21-01-2022 00:00:00";
+		String wind = cercaStat (stringa, "wind", 125);
+		double speedValue = estraiStat(wind, "speed");
+		double degvalue = estraiStat(wind, "deg");
+		double gustvalue = estraiStat(wind, "gust");
+		System.out.println(gustvalue);
+		boolean prova = confrontaData(stringa3, stringa2);
+		boolean prova2= confrontaOra(stringa3, stringa4);
+		System.out.print(prova2);
+		
+		Date conversione = convertiDataOra(stringa5);
+		System.out.print(conversione);
+	}
+		
+	//"\"humidity\":45},\"visibility\":10000,\"wind\":{\"speed\":4.02,\"deg\":267,\"gust\":5.36},\"clouds\":";
+
+	
+	
+	
+	
+	public static String cercaStat (String stringa, String stat, int carattereFinale) {
+				    	
+		    	String findWind = "";
+		    	
+		    	BufferedReader reader = new BufferedReader (new StringReader (stringa));
+				BufferedWriter writer = new BufferedWriter (new StringWriter ());
+
+		    	try {
+		    		int next;
+
+		    		
+		    		while((next = reader.read()) != -1 ) {
+// 34 = ", 125 = }, 44 = virgola, 58 = :
+	
+		    			if (next == 34) {
+		    				
+		    				while((next = reader.read()) != -1 ) {
+
+		    					findWind += (char) next;	
+		    					
+		    					 if (next == 34) {
+		    						 if ((findWind.compareTo("\"" + stat + "\"") != 0)) {
+		    							 findWind = "\""; 
+		    							 }
+		    						 break; 
+		    					 }
+		    				} 
+
+		    				if ((findWind.compareTo("\"" + stat + "\"") == 0)) {
+
+
+
+								while((next = reader.read()) != -1 ) {
+
+			    					findWind += (char) next;
+			    					
+			    					if (next == carattereFinale) break;
+			    				}break;
+							}
+		    			}
+		    			
+		    		}
+		    		if (findWind.compareTo("\"") == 0) findWind="\""+stat+"\": "+"-1";
+		    		System.out.println(findWind);
+		    		reader.close();
+			    	writer.close();
+		    	}
+		    	catch ( IOException e) { 
+					System . out . println (" ERRORE di I/O");
+					System . out . println (e);
+		    	}
+		    	catch(Exception e){
+		    		System . out . println (e);
+		    	}
+
+		    	return findWind;
+		    }
+	
+	
+	//funzione che data una stringa (wind, generalmente) cerca una statistica precisa e ne estrae il valore restituendolo 
+	//come double. pee prima cosa cerca la stat usando cercaStat, dopodichè rimuove l'ultimo carattere e procede a separare
+	//il nome della stat dal suo valore.
+	public static double estraiStat (String stringa, String stat) {
+
+		String stringaEstratta = cercaStat(stringa, stat, 125);
+		double statEstratta = 0;
+		String numEstratto = "";
+
+		if (stringaEstratta != null && stringaEstratta.length() > 0 && stringaEstratta.charAt(stringaEstratta.length() - 1) == '}') {
+			stringaEstratta = stringaEstratta.substring(0, stringaEstratta.length() - 1);}
+	
+		System.out.println(stringaEstratta);
+	
+		BufferedReader reader = new BufferedReader (new StringReader (stringaEstratta));
+		BufferedWriter writer = new BufferedWriter (new StringWriter ());
+
+		try {
+    		int next;
+  
+    		while((next = reader.read()) != -1 ) {
+    			if (next == 58) {
+
+    				while ((next = reader.read()) != -1) {
+    					if (next == 44) break;
+    					numEstratto += (char) next;
+		
+    				} break;
+    			}
+    		}
+    		reader.close();
+	    	writer.close();
+		} 	
+		catch ( IOException e) { 
+			System . out . println (" ERRORE di I/O");
+			System . out . println (e);
+    	}
+    	catch(Exception e){
+    		System . out . println (e);
+    	}
+
+		statEstratta = Double.parseDouble(numEstratto);
+		System.out.println(statEstratta);
+		return statEstratta;
+	}
+
+	public static boolean confrontaData(String data1, String data2) {
+		String dataLetta = data1.substring(0, data1.length()-9);
+		String daCercare = "\"date\": " + data2;
+		if (daCercare.compareTo(dataLetta) == 0) return true;
+		else return false;
+	} 
+	
+	public static boolean confrontaOra(String ora1, String ora2) {
+		String oraLetta = ora1.substring(19, ora1.length());
+		System.out.println(oraLetta);
+		if (ora2.compareTo(oraLetta) == 0) {
+			System.out.println(ora2.compareTo(oraLetta));
+			return true;
+		} 
+		else {
+			System.out.println(ora2.compareTo(oraLetta));
+			return false;}
+	} 
+	
+	public static Date convertiDataOra (String dataOra) {
+
+		SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		Date ritorno = null;
+		{
+			try {
+				Date date = dateParser.parse(dataOra);
+				ritorno = date;
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		return ritorno;
+	}
+</p>
+</details>
 
 ## Documentazione
 Il codice è documentato in Javadoc.
