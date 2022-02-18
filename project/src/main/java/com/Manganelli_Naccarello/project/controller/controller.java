@@ -22,7 +22,7 @@ public class controller
 {
 	
 	@Autowired
-	static service servizioWind = new service();
+	static ServiceImpl service = new ServiceImpl();
 
 	/** Rotta di tipo GET che opera una chiamata all'API e restituisce le attuali condizioni meteo del vento.
 	 * 
@@ -39,11 +39,11 @@ public class controller
 		
 		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
-		String meteo = servizioWind.getMeteo(cityName);
+		String meteo = service.getMeteo(cityName);
 		if (meteo.isEmpty()) throw new PrevisioniNotFoundException("NON ESISTE ALCUNA CITTA' CON QUESTO NOME");
-		String data = "\"date\":" + servizioWind.getDateTime();
-		String wind = data + "\n" + servizioWind.cercaStat(meteo, "wind", 125) + "\n";
-		System.out.println(servizioWind.salva(wind, path));
+		String data = "\"date\":" + service.getDateTime();
+		String wind = data + "\n" + service.cercaStat(meteo, "wind", 125) + "\n";
+		System.out.println(service.salva(wind, path));
 		return wind;
 		}
 	
@@ -92,47 +92,7 @@ public class controller
 		return ritorno;
 		
 	}
-	
-	
-	@GetMapping (value = "/media")
-		public String media (@RequestParam String cityName, String dataOraInizio, String dataOraFine)
-							throws EmptyStringException, FileNotFoundException {
-		
-		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
-		if (dataOraInizio.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI INIZIO DELLA RICERCA.");
-		if (dataOraFine.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI FINE DELLA RICERCA.");
-		String ritorno = "";
-		FiltroMedia media = new FiltroMedia(cityName, dataOraInizio, dataOraFine);
-		ritorno = media.filtro();
-		return ritorno;
-	}
-	
-	@GetMapping (value = "/min")
-	public String min (@RequestParam String cityName, String dataOraInizio, String dataOraFine)
-							throws EmptyStringException, FileNotFoundException {
-		
-		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
-		if (dataOraInizio.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI INIZIO DELLA RICERCA.");
-		if (dataOraFine.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI FINE DELLA RICERCA.");
-		String ritorno = "";
-		FiltroMin min = new FiltroMin(cityName, dataOraInizio, dataOraFine);
-		ritorno = min.filtro();
-		return ritorno;
-	}
-	
-	@GetMapping (value = "/max")
-	public String max (@RequestParam String cityName, String dataOraInizio, String dataOraFine)
-							throws EmptyStringException, FileNotFoundException{
-		
-		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
-		if (dataOraInizio.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI INIZIO DELLA RICERCA.");
-		if (dataOraFine.isEmpty()) throw new EmptyStringException("NON HAI INSERITO L'ORA DI FINE DELLA RICERCA.");
-		String ritorno = "";
-		FiltroMax max = new FiltroMax(cityName, dataOraInizio, dataOraFine);
-		ritorno = max.filtro();
-		return ritorno;
-	}
-	
+
 	/**Rotta di tipo GET che stampa il contenuto del file associato alla città scelta dall'utente.
 	 * 
 	 * @param il nome della città associata al file da leggere.
@@ -149,7 +109,7 @@ public class controller
 		if (cityName.isEmpty()) throw new EmptyStringException("NON HAI INSERITO LA CITTA' DA CERCARE.");
 		City city = new City();
 		String path = System.getProperty("user.dir") + "/saves/" + cityName + "Call.txt";
-        city = servizioWind.leggiFile(path, cityName);
+        city = service.leggiFile(path, cityName);
         return city.toString();
 		
 	}

@@ -64,6 +64,7 @@ public class FiltroMax extends FiltroGenerico {
 					setN(getN() + 1);
 					dataPrevisione = service.convertiDataOra(getCity().getDataN(getN()));
 					fine = dataPrevisione.compareTo(getFine());
+					if (getN() == getCity().getPrevisioni().size()-1) break;
 				}
 				maxSpeed = Math.round(maxSpeed * 100.0) / 100.0;
 				maxDeg = Math.round(maxDeg * 100.0) / 100.0;

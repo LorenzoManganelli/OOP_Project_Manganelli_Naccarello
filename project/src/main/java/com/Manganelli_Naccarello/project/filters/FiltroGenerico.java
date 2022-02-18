@@ -1,6 +1,6 @@
 package com.Manganelli_Naccarello.project.filters;
 
-import com.Manganelli_Naccarello.project.service.service;
+import com.Manganelli_Naccarello.project.service.ServiceImpl;
 import com.Manganelli_Naccarello.project.exceptions.*;
 import com.Manganelli_Naccarello.project.model.*;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 
 public class FiltroGenerico {
 	
-    service service = new service();
+    ServiceImpl service = new ServiceImpl();
     private City city = new City();
     private String path = "";
     private Date inizio;

@@ -64,6 +64,7 @@ public class FiltroMin extends FiltroGenerico {
 					setN(getN() + 1);
 					dataPrevisione = service.convertiDataOra(getCity().getDataN(getN()));
 					fine = dataPrevisione.compareTo(getFine());
+					if (getN() == getCity().getPrevisioni().size()-1) break;
 				}
 				minSpeed = Math.round(minSpeed * 100.0) / 100.0;
 				minDeg = Math.round(minDeg * 100.0) / 100.0;

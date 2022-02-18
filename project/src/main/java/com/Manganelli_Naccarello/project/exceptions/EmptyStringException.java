@@ -15,5 +15,9 @@ public class EmptyStringException extends Exception {
 	public EmptyStringException (String messaggio) {
 		this.messaggio = messaggio;
 		System.out.print(messaggio);
-	};
+	}
+
+	public String getMessaggio() {
+		return messaggio;
+	}
 }

@@ -49,6 +49,7 @@ public class FiltroMedia extends FiltroGenerico {
 					setN(getN() + 1);
 					dataPrevisione = service.convertiDataOra(getCity().getDataN(getN()));
 					fine = dataPrevisione.compareTo(getFine());
+					if (getN() == getCity().getPrevisioni().size()-1) break;
 				}
 				mediaSpeed = Math.round(mediaSpeed / super.getContaSpeed() * 100.0) / 100.0;
 				mediaDeg = Math.round(mediaDeg / super.getContaDeg() * 100.0) / 100.0;

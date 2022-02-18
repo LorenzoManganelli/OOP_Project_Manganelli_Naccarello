@@ -31,7 +31,7 @@ import java.text.SimpleDateFormat;
  * */
 
 @Service
-public class service
+public class ServiceImpl implements com.Manganelli_Naccarello.project.service.Service
 {
 	/** key è la chiave necessaria per poter eseguire la chiamata all'API.
 	 * */
@@ -300,13 +300,7 @@ public class service
 			}
 		return ritorno;
 	}
-	
 }
 
-//ඞ
-//ඞ
-//ඞ
-//ඞ
-//ඞ
-//ඞ
+
 //ඞ

@@ -7,13 +7,17 @@ package com.Manganelli_Naccarello.project.exceptions;
  * */
 
 public class PrevisioniNotFoundException extends Exception {
-	
+
 	private String messaggio;
-	
+
 	/** Costruttore della classe.
 	 * */
 	public PrevisioniNotFoundException (String messaggio) {
 		this.messaggio = messaggio;
 		System.out.print(messaggio);
-	};
+	}
+
+	public String getMessaggio() {
+		return messaggio;
+	}
 }

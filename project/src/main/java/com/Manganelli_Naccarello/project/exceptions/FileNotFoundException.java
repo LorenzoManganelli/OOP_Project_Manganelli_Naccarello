@@ -15,5 +15,9 @@ public class FileNotFoundException extends Exception {
 	public FileNotFoundException (String messaggio) {
 		this.messaggio = messaggio;
 		System.out.print(messaggio);
-	};
+	}
+	
+	public String getMessaggio() {
+		return messaggio;
+	}
 }
