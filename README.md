@@ -1,6 +1,6 @@
 # OOP_Project_Manganelli_Naccarello
 ## Controllo del vento
-Questo programma, creato utilizzando java, permette di estrarre i dati del vento, divisi in velocità "speed", raffica "gust" e angolo "degree", dal'API OpenWeather. Inoltre salva questi dati su file, che a loro volta possono essere filtrati per i valori massimi, minimi e medi di tutte e tre le caratteristiche, scegliendo come range sia orari che date.
+Questo programma, creato utilizzando java, permette di estrarre i dati del vento, divisi in velocità "speed", intensità "gust" e angolo "degree", dal'API OpenWeather. Inoltre salva questi dati su file, che a loro volta possono essere filtrati per i valori massimi, minimi e medi di tutte e tre le caratteristiche, scegliendo come range sia orari che date.
 
 ## Contenuti
 1. [Introduzione](#introduzione)
@@ -28,12 +28,12 @@ Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere al
 | ------------- | ------------- | ------------- |
 | GET  | /wind?cityName="*città*" | Restituisce le informazioni attuali del vento e le salva su file|
 | GET  | /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*" | Filtra tutti i dati del file, con la possibilità di filtrare per il **massimo** (*max, Max, MAX*), il **minimo** (*min, Min, MIN*) e **media** (*med, Med, MED*) |
-| GET  | /print?cityName="*città*" | Stampa tutto il file di quella città sotto forma di JSONArray |
+| GET  | /print?cityName="*città*" | Stampa tutto il file di quella città sotto forma di stringa di testo|
 
 Per effetuare le richieste basta avviare il programma come SpringBoot e utilizzare Postman nel modo seguente 
 
 ## /wind?cityName="*città*"
-Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e Postman restituirà un JSONObject che ha i dati di speed, deg e gust e la data e ora corrente (in caso di errore sulla console verrà stampato un messaggio di errore)
+Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e Postman restituirà un testo che ha i dati di speed, deg e gust e la data e ora corrente (in caso di errore sulla console verrà stampato un messaggio di errore)
  
 ![Screenshot (206)](https://user-images.githubusercontent.com/95304083/154550951-880b884b-c68d-41ae-b97d-d4a7aa9561e9.png)
 
@@ -239,7 +239,7 @@ Ci interessava testare i metodi cercaStat, estraiStat e i vari confronti, quindi
 
 <a name="documentazione"></a>
 ## Documentazione
-Il codice è documentato in [Javadoc](https://github.com).
+Il codice è documentato in [Javadoc](https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello/tree/master/project/doc).
 
 <a name="eccezioni"></a>
 ## Eccezioni
