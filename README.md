@@ -9,8 +9,7 @@ Questo programma, creato utilizzando java, permette di estrarre i dati del vento
 4. [Test](#test)
 5. [Documentazione](#documentazione)
 6. [Eccezioni](#eccezioni)
-7. [Struttura del progetto](#struttura)
-8. [Progettisti](#progettisti)
+7. [Progettisti](#progettisti)
 
 <a name="introduzione"></a>
 ## Introduzione
@@ -250,11 +249,6 @@ Le eccezioni del programma sono le seguenti:
 **FileNotFoundException**: stampa un messaggio di errore in caso il file non viene trovato dal programma (per esempio in caso la città sia stata scritta sbagliata), e viene usata nelle rotte **/filter** e **/print**
 
 **PrevisioniNotFoundException**:  stampa un messaggio di errore quando la chiamata all'API non restituisce alcun risultato, e viene usata dalla rotta **/wind**.
-
-<a name="struttura"></a>
-## Struttura del progetto
-
-Struttura originale del progetto
 
 <a name="progettisti"></a>
 ### Progettisti
