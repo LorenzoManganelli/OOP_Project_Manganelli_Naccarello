@@ -63,7 +63,6 @@ public class ServiceImpl implements com.Manganelli_Naccarello.project.service.Se
             URLConnection openConnection = (URLConnection) new URL(url).openConnection();
             Scanner in = new Scanner(new BufferedReader(new InputStreamReader(openConnection.getInputStream())));
             meteo += in.nextLine();
-            System.out.println(meteo);
             in.close();
 
         } catch (IOException e) {
