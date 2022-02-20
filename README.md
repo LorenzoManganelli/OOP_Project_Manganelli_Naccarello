@@ -1,6 +1,6 @@
 # OOP_Project_Manganelli_Naccarello
 ## Controllo del vento
-Questo programma, creato utilizzando java, permette di estrarre i dati del vento, divisi in velocità "speed", intensità "gust" e angolo "degree", dal'API OpenWeather. Inoltre salva questi dati su file, che a loro volta possono essere filtrati per i valori massimi, minimi e medi di tutte e tre le caratteristiche, scegliendo come range sia orari che date.
+Questo programma, creato utilizzando linguaggio java, permette di estrarre i dati del vento, divisi in velocità "speed", intensità "gust" e angolo "degree", dal'API Current OpenWeather. Questi dati vengono salvati su file, e a loro volta possono essere filtrati per valori massimi, minimi, medi. Il range di esaminazione è totalmente personalizzabile dall'utente sia per le ore che per i giorni che settimanalmente
 
 ## Contenuti
 1. [Introduzione](#introduzione)
@@ -13,11 +13,13 @@ Questo programma, creato utilizzando java, permette di estrarre i dati del vento
 
 <a name="introduzione"></a>
 ## Introduzione
-Il programma è capace di estrarre dall'API i dati sopra segnati e li salva su file, e stampa sulla console il path per poterlo trovare. A sua volta questo file può essere filtrato per max, min e media della speed, gust e deg (già pronte ci sono 4 città: *Ancona, Tokyo, Sydney e Helsinki*).
+Il programma è capace di estrarre dall'API i dati sopra segnati e li salva su file, e stampa sulla console il path per poterlo trovare. Su questo file saranno operati i filtri (sono già disponibili i file relativi alle informazioni di 4 città: *Ancona, Tokyo, Sydney e Helsinki*).
 
 <a name="installazione"></a>
 ## Installazione
-Il programma può essere scaricato inserendo ```git clone https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git```
+Il programma può essere scaricato utilizzando il comando:
+
+```git clone https://github.com/LorenzoManganelli/OOP_Project_Manganelli_Naccarello.git```
 
 <a name="rotte"></a>
 ## Rotte
@@ -26,25 +28,26 @@ Le rotte che l'utente può effettuare con l'utilizzo di Postman devono essere al
 | Tipo  | Rotta | Descrizione |
 | ------------- | ------------- | ------------- |
 | GET  | /wind?cityName="*città*" | Restituisce le informazioni attuali del vento e le salva su file|
-| GET  | /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*" | Filtra tutti i dati del file, con la possibilità di filtrare per il **massimo** (*max, Max, MAX*), il **minimo** (*min, Min, MIN*) e **media** (*med, Med, MED*) |
-| GET  | /print?cityName="*città*" | Stampa tutto il file di quella città sotto forma di stringa di testo|
+| GET  | /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*" | Filtra i dati del file, con la possibilità di filtrare per il **massimo** (*max, Max, MAX*), il **minimo** (*min, Min, MIN*) e **media** (*med, Med, MED*), secondo un range personalizzabile dall'utente|
+| GET  | /print?cityName="*città*" | Stampa il file relativo a quella città sotto forma di stringa di testo|
 
-Per effetuare le richieste basta avviare il programma come SpringBoot e utilizzare Postman nel modo seguente 
+Per effetuare le richieste basta avviare il programma IDE e utilizzare Postman nel modo seguente: 
 
 ## /wind?cityName="*città*"
-Semplicemente inserire una qualsiasi città esistente al posto di "*città*", e Postman restituirà un testo che ha i dati di speed, deg e gust e la data e ora corrente (in caso di errore sulla console verrà stampato un messaggio di errore)
+Inserire un qualsiasi nome di città esistente al posto di "*città*", e Postman restituirà una stringa testo contenente gli attuali dati di speed, deg e gust e la attuale data e ora (in caso di errore sulla console verrà stampato un messaggio di errore sulla IDE)
  
 ![Screenshot (206)](https://user-images.githubusercontent.com/95304083/154550951-880b884b-c68d-41ae-b97d-d4a7aa9561e9.png)
 
 ## /filter?filterType="*filtro*"&cityName="*città*"&dataOraInizio="*inizio*"&dataOraFine="*fine*"
-Inserire il tipo di filtro al posto di "*filtro*" (max, Max, MAX, min, Min, MIN, med, Med, MED), il nome dellà città al posto di "*città*" e la data di inizio e di fine che vuole essere analizzata (formato dd-MM-yyyy HH:mm:ss) al posto di "*inizio*" e "*fine*", restituendo alla fine un testo che mostra i dati richiesti con relative date e numero di dati analizzati.
+Inserire il tipo di filtro al posto di "*filtro*" (max, Max, MAX, min, Min, MIN, med, Med, MED), il nome dellà città al posto di "*città*" e la data di inizio e di fine che vuole essere analizzata (formato dd-MM-yyyy HH:mm:ss) al posto di "*inizio*" e "*fine*"; Postman restituerà una stringa contentente l'analisi dei dati operata secondo i parametri forniti con relative date rilevanti e numero di dati analizzati.
  
-**NOTA**: per usare i filtri si deve avere un file contenente i dati in maniera corretta
+**NOTA**: per usare i filtri si deve esistere un file contenente i dati scritti maniera corretta
+
 ![Screenshot (207)](https://user-images.githubusercontent.com/95304083/154553283-47363ff5-c4bd-4079-b6a4-918e7f0f5be0.png)
 
 
 ## /print?cityName="*città*"
-Semplicemente inserire una città con un file esistente al posto di "*città*", e Postman restituirà un file di testo contenente i dati all'interno del file.
+Inserire il nome una città di cui esiste già un file esistente al posto di "*città*", e Postman restituirà stringa di testo contenente tutti i dati all'interno del file.
  
 ![Screenshot (208)](https://user-images.githubusercontent.com/95304083/154558051-7b7316b3-ac23-4c36-a562-80f48fb0aa06.png)
 
@@ -234,7 +237,7 @@ public class test {
 </p>
 </details>
 
-Ci interessava testare i metodi cercaStat, estraiStat e i vari confronti, quindi per farlo abbiamo creato un progetto di test separato e abbiamo fatto li tutti i nostri "esperimenti".
+Durante le fasi embrionali del progetto abbiamo lavorato a diverse funzioni importanti in un ambiente separato (una classse appartenente ad un altro progetto). Qui, abbiamo scritto le due funzioni principali del programma (cercaStat per ricavare i dati del vento dall'API e estraiStat per ricavare i dati numerici relativi ad ogni parametro del vento) e abbiamo creato delle funzioni per confrontare due stringe contenenti una data o un ora (queste funzioni non sono presenti nel programma finale poichè abbiamo deciso di convertire le stringe di data e ora in un unico parametro di tipo Date, più facilmente confrontabile). A progetto terminato abbiamo riportato i test relativi a cercaStat ed estraiStat (riscritti in modo da essere esaminati attraverso JUnit) nella classe di test ServiceImplTest contenuta nella cartella cartella Test.
 
 <a name="documentazione"></a>
 ## Documentazione
@@ -242,14 +245,14 @@ Il codice è documentato in [Javadoc](https://github.com/LorenzoManganelli/OOP_P
 
 <a name="eccezioni"></a>
 ## Eccezioni
-Le eccezioni del programma sono le seguenti:
+Le eccezioni create per il programma sono le seguenti:
  
-**EmptyStringException**: stampa un messaggio di errore in caso la stringa viene lasciata vuota, e viene usata nelle rotte **/wind**. **/filter** e **/print**
+**EmptyStringException**: stampa un messaggio di errore in caso la stringa venga lasciata vuota, e viene usata nelle rotte **/wind**. **/filter** e **/print**
 
-**FileNotFoundException**: stampa un messaggio di errore in caso il file non viene trovato dal programma (per esempio in caso la città sia stata scritta sbagliata), e viene usata nelle rotte **/filter** e **/print**
+**FileNotFoundException**: stampa un messaggio di errore in caso il file cercato non venga trovato dal programma (ad esempio se l'utente scriva il nome della città in maniera errata), e viene usata nelle rotte **/filter** e **/print**
 
 **PrevisioniNotFoundException**:  stampa un messaggio di errore quando la chiamata all'API non restituisce alcun risultato, e viene usata dalla rotta **/wind**.
 
 <a name="progettisti"></a>
 ### Progettisti
-Lorenzo Manganelli e Raffaele Naccarello
+Lorenzo Manganelli (50%) e Raffaele Naccarello (50%)
